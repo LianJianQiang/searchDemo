@@ -58,7 +58,7 @@ export default class Fetch {
             let json = {
                     id: val.disease ? val.disease.id ? val.disease.id : '' : '',
                     name: val.disease ? val.disease.name ? val.disease.name : '' : '',
-                    department: val.department ? val.department.name ? val.department.name : '' : '',
+                    department: val.department ? val.department.name ? val.department.name : '测试科' : '测试科',
                     weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
                     describe: ''
                 },
@@ -99,7 +99,12 @@ export default class Fetch {
         })
 
         this._symptoms = _symptoms;
-        this._curInputSymptoms = [].concat(_symptoms);
+
+        this.initCurInputSymptoms();
+    }
+
+    initCurInputSymptoms(){
+        this._curInputSymptoms=[].concat(this._symptoms);
         this.renderCurInputSymptoms();
     }
 

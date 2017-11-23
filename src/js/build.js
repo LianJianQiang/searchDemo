@@ -113,6 +113,7 @@ $(function () {
 
     // 点击 性别
     $('#RxThinkingCard .genderTag').click(function () {
+        if ($(this).hasClass('cursor-no')) return;
         _common.common.toggleCls($(this), '.genderTag', 'lightH');
         fetch.setAttr('_gender', $(this).attr('data-value'));
         $('.searchBtn').click();
@@ -120,6 +121,7 @@ $(function () {
 
     // 点击 年龄
     $('#RxThinkingCard .ageTag').click(function () {
+        if ($(this).hasClass('cursor-no')) return;
         _common.common.toggleCls($(this), '.ageTag', 'lightH');
         fetch.setAttr('_age', $(this).attr('data-value'));
         $('.searchBtn').click();
@@ -134,12 +136,20 @@ $(function () {
             alert('数据请求失败');
             return;
         }
+
+        if ($('.header .tag').hasClass('cursor-no')) {
+            $('.drugsCloseBtn').addClass('noCur');
+        } else {
+            $('.drugsCloseBtn').removeClass('noCur');
+        }
         getDrugFetch({
             id: id,
             cb: function cb() {
+
                 $('#RxThinkingCard .diagnoses').hide();
                 $('#RxThinkingCard .drugs').show();
                 $('.drugsDiseaseName').html(name);
+                $('.header .tag').addClass('cursor-no');
             }
         });
     });
@@ -157,12 +167,18 @@ $(function () {
             cb: function cb() {
                 $('#RxThinkingCard .diagnoses').hide();
                 $('#RxThinkingCard .inquiry').show();
+                $('.header .tag').addClass('cursor-no');
             }
         });
     });
 
     //用药方案 --> 点击 关闭
     $('#RxThinkingCard .drugsCloseBtn').click(function () {
+
+        if (!$(this).hasClass('noCur')) {
+            $('.header .tag').removeClass('cursor-no');
+        }
+
         $('#RxThinkingCard .diagnoses').show();
         $('#RxThinkingCard .drugs').hide();
     });
@@ -179,9 +195,17 @@ $(function () {
 
     //问诊 --> 点击 关闭
     $('.inqueryCloseBtn').click(function () {
+        $('.header .tag').removeClass('cursor-no');
+        fetch.initCurInputSymptoms();
+
+        endInquiry();
+    });
+
+    function endInquiry() {
+
         $('#RxThinkingCard .diagnoses').show();
         $('#RxThinkingCard .inquiry').hide();
-    });
+    }
 
     //问诊 --> 点击 提前结束问诊
     $('#RxThinkingCard .inuqeryEndBtn').click(function () {
@@ -200,7 +224,7 @@ $(function () {
     $('#RxThinkingCard .optionsListWrap').on('click', '.optionsList', function () {
         var key = $(this).attr('data-key'),
             answer = $(this).attr('data-answer');
-        console.log(answer);
+
         nextFetch({
             value: [key],
             cb: function cb() {
@@ -314,7 +338,7 @@ $(function () {
             success: function success(data) {
                 if (data.diagnosis) {
                     fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
-                    $('.inqueryCloseBtn').click();
+                    endInquiry();
                     $('.diseaseListWrap li').addClass('fromInquiry');
                 } else if (data.questions) {
                     fetch.handleInquiryStartFetch(data);
@@ -437,7 +461,7 @@ var Fetch = function () {
                 var json = {
                     id: val.disease ? val.disease.id ? val.disease.id : '' : '',
                     name: val.disease ? val.disease.name ? val.disease.name : '' : '',
-                    department: val.department ? val.department.name ? val.department.name : '' : '',
+                    department: val.department ? val.department.name ? val.department.name : '测试科' : '测试科',
                     weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
                     describe: ''
                 },
@@ -480,7 +504,13 @@ var Fetch = function () {
             });
 
             this._symptoms = _symptoms;
-            this._curInputSymptoms = [].concat(_symptoms);
+
+            this.initCurInputSymptoms();
+        }
+    }, {
+        key: 'initCurInputSymptoms',
+        value: function initCurInputSymptoms() {
+            this._curInputSymptoms = [].concat(this._symptoms);
             this.renderCurInputSymptoms();
         }
     }, {

@@ -127,6 +127,7 @@
       padding: 4px 10px;
       line-height: 17px; }
       #RxThinkingCard .drugInfo .detail em {
+        font-weight: 700;
         color: #F67823; }
   #RxThinkingCard .diagnoses .contTitle .text {
     color: #3D83B8;
