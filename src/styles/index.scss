@@ -1,0 +1,510 @@
+$tagColor1: #3D83B8;
+$tagColorOP: rgba(52, 73, 94, .5);
+$btnColor1: #41B8B0;
+
+$txtCOP: rgba(102, 102, 102, .6);
+$txtC: #666;
+
+@mixin borderR{
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+#header {
+    width: 100%;
+    min-width: 1000px;
+    height: 55px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 0 5px #888;
+    .logo{
+        width:121px;
+        padding:0 10px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        img{
+            width:100%;
+        }
+    }
+    .searchWrap{
+        display: flex;
+        align-items: center;
+        .inpWrap{
+            width:539px;
+            border:1px solid #f2f2f2;
+            border-right:none;
+            input{
+                width:520px;
+                height:32px;
+                padding-left:10px;
+                font-size: 14px;
+            }
+        }
+
+        .searchBtn{
+            width:100px;
+            height:34px;
+            line-height: 34px;
+            text-align: center;
+            color: #fff;
+            background: $btnColor1;
+            font-size: 14px;
+        }
+    }
+}
+
+#RxThinkingCard {
+
+    @mixin comPad {
+        padding: 0 22px;
+    }
+
+    width: 540px;
+    height: 366px;
+    padding-left: 121px;
+    .title {
+        height: 22px;
+        margin: 10px;
+        font-size: 16px;
+        color: #333333;
+        .lightH {
+            color: #D0011B;
+            margin: 0 5px;
+        }
+    }
+
+    //header
+    .header {
+        width: 100%;
+        height: 74px;
+        background: #F7F7F7;
+        padding: 12px 22px 10px;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .checkCont {
+        width: 100%;
+        line-height: 20px;
+        color: rgba(52, 73, 94, .8);
+        font-size: 14px;
+    }
+    .tagWrap {
+        height: 22px;
+        line-height: 22px;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        .tag {
+            display: inline-block;
+            margin-right: 8px;
+            padding: 0 5px;
+            color: $txtCOP;
+            font-size: 12px;
+            border: 1px solid $txtCOP;
+            background: #fff;
+            @include borderR;
+            .describe {
+                font-size: 14px;
+                color: $txtC;
+            }
+            &.lightH {
+                color: #fff;
+                background: $tagColor1;
+                border: 1px solid $tagColor1;
+            }
+            &.cursor-no {
+                cursor: no-drop;
+            }
+        }
+    }
+
+    //content
+    .content {
+        width: 100%;
+        height: 250px;
+        background: #fff;
+    }
+
+    $borderBC: 1px solid #f2f2f2;
+    @mixin borderB {
+        border-bottom: $borderBC;
+    }
+    @mixin infoBg{
+        background: rgba(245, 166, 35, .14);
+    }
+    .diagnoses, .inquiry, .drugs {
+        width: 540px;
+        height: 100%;
+        border: 1px solid #F2F2F2;
+        border-top: none;
+        box-sizing: border-box;
+        overflow: hidden;
+        .contTitle {
+            height: 40px;
+            line-height: 40px;
+            border-bottom: $borderBC;
+            @include comPad;
+        }
+    }
+
+    .drugInfo {
+        @include borderR;
+        @include infoBg;
+        $color: #F67823;
+
+        height: 0;
+        line-height: 16px;
+        overflow: hidden;
+        border:none;
+        .hint {
+            width: 42px;
+            height: 100%;
+            color: #fff;
+            text-align: center;
+            background: $color;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 0 4px 4px 0;
+        }
+        .detail {
+            max-width: 90%;
+            box-sizing: border-box;
+            padding: 4px 10px;
+            line-height: 17px;
+            em {
+                color: $color;
+            }
+        }
+    }
+
+    //疾病列表
+    .diagnoses {
+        .contTitle {
+            .text {
+                color: $tagColor1;
+                font-size: 14px;
+                span {
+                    font-size: 12px;
+                    color: $tagColorOP;
+                }
+            }
+        }
+        .diseaseListWrap {
+            @include comPad;
+            li {
+                @include borderB;
+                padding-top:10px;
+                box-sizing: border-box;
+                height: 40px;
+                overflow: hidden;
+
+                &.hover {
+                    height: 88px;
+                    .left .drugInfo{
+                        height:40px;
+                        border:1px solid #F9954F;
+                    }
+                    .right{
+                        display: block;
+                        .beginAskBtn{
+                            display: block;
+                        }
+                    }
+                }
+                &.fromInquiry{
+                    .right .beginAskBtn{
+                        display: none;
+                    }
+                }
+
+                &:last-child{
+                    border:none;
+                }
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                @mixin leftH {
+                    height: 20px;
+                    line-height: 20px;
+                }
+                .left {
+                    @include leftH;
+                    .disease {
+                        display: flex;
+                        justify-content: flex-start;
+                        margin-bottom: 8px;
+                    }
+                    .diseaseName {
+                        width: 112px;
+                        @include leftH;
+
+                        font-size: 14px;
+                        color: #222222;
+                        margin-right: 10px;
+
+                    }
+                    .weight {
+                        width: 168px;
+                        margin-right: 10px;
+                        position: relative;
+                        @mixin posit {
+                            position: absolute;
+                            top: 5px;
+                            left: 0;
+                        }
+                        .weightBj {
+                            width: 100%;
+                            height: 8px;
+                            background: #ECECEC;
+                            @include posit;
+
+                        }
+                        .weightVal {
+                            width: 50%;
+                            height: 8px;
+                            background: $tagColor1;
+                            @include posit;
+                        }
+
+                    }
+                    .drugInfo .detail{
+                        width: 324px;
+
+                    }
+                    .department {
+                        width: 60px;
+                        height: 20px;
+                        background: rgba(61, 131, 184, .1);
+                        color: $tagColor1;
+                        text-align: center;
+                        @include leftH;
+                        @include borderR;
+
+                    }
+
+                }
+
+                .right {
+                    display: none;
+
+                    .goDrugBtn {
+                        color: $btnColor1;
+                        font-size: 12px;
+                        margin-bottom: 14px;
+                        text-align: right;
+                        img {
+                            width: 10px;
+                            height: 12px;
+                        }
+                    }
+                    .beginAskBtn {
+                        @include borderR;
+                        width: 80px;
+                        height: 28px;
+                        line-height: 28px;
+                        background: $btnColor1;
+                        color: #fff;
+                        text-align: center;
+                        box-shadow: rgba(174, 174, 174, .5) 0 2px 4px 0;
+                    }
+                }
+            }
+
+        }
+    }
+
+    //智能问诊
+    .inquiry {
+        background: url('/images/bj.png') no-repeat;
+        background-position: bottom;
+
+        .contTitle {
+            display: flex;
+            justify-content: space-between;
+            .text{
+                font-size: 14px;
+                font-weight: 700;
+                color: $btnColor1;
+                span{
+                    font-size: 12px;
+                    color: $tagColorOP;
+                }
+            }
+            .btn{
+                display: flex;
+                justify-content: flex-end;
+                .inuqeryEndBtn{
+                    margin-right:15px;
+                    color: $tagColor1;
+                }
+                .inqueryCloseBtn{
+                    color: $btnColor1;
+                }
+            }
+        }
+
+        .inquiryListWrap{
+            @include comPad;
+            padding-top:30px;
+            font-size: 16px;
+            &>div{
+                display: flex;
+                flex-direction: row;
+            }
+            .tag{
+                width:10%;
+                font-weight: 700;
+            }
+            .stem {
+                margin-bottom:20px;
+                .tag{
+                    color: $btnColor1;
+                }
+                .question{
+                    width:85%;
+                    color: #333333;
+                }
+            }
+            .options{
+                .tag{
+                    color: $tagColor1;
+                }
+                .optionsListWrap{
+                    width:90%;
+                    .optionsList{
+                        display: inline-block;
+                        min-width: 24px;
+                        height: 24px;
+                        line-height: 24px;
+                        border-radius: 12px;
+                        border: 1px solid rgba(61,131,184,.2);
+                        padding:0 15px;
+                        color: $tagColor1;
+                        font-weight: normal;
+                        text-align: center;
+                        font-size: 12px;
+                        margin:0 5px 10px 0;
+                    }
+                }
+
+            }
+        }
+
+
+    }
+
+    //用药方案
+    .drugs {
+        position: relative;
+        img{
+            width: 12px;
+            height: 14px;
+            margin-right: 5px;
+        }
+        .contTitle {
+            background: url('/images/drugBj.jpg') no-repeat;
+            background-size: 100% 100%;
+            display: flex;
+            justify-content: space-between;
+            color: #fff;
+            .diseaseNameWrap{
+                width:75%;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-start;
+                align-items: center;
+                font-size: 14px;
+                .drugsDiseaseName{
+                    display: inline-block;
+                    max-width:80%;
+                    height:100%;
+                    line-height: 40px;
+                }
+            }
+            .drugsCloseBtn{
+                width:10%;
+                height: 100%;
+                text-align: right;
+            }
+        }
+
+        .drugListWrap{
+            @include comPad;
+        }
+
+        .drugList{
+            @include borderB;
+            padding-top:10px;
+            padding-bottom:10px;
+            //&:last-child{
+            //    border-bottom:none;
+            //}
+            .drugName{
+                height:22px;
+                line-height: 22px;
+                font-size: 14px;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+            }
+            .drugInfo{
+                @include infoBg;
+                max-width:100%;
+                //height: 0;
+                -webkit-transition:  .3s;
+                -moz-transition:  .3s;
+                -ms-transition:  .3s;
+                -o-transition:  .3s;
+                transition:  .3s;
+                display: none;
+                .hint{
+                    width:24px;
+                    height: 24px;
+                    line-height: 24px;
+                    text-align: center;
+                }
+                .detail{
+                    color: #F9954F;
+                }
+            }
+
+            &.hover{
+                .drugName{
+                    margin-bottom:5px;
+                }
+                .drugInfo{
+                    height:24px;
+                    border:1px solid #F9954F;
+                    display: block;
+                }
+            }
+        }
+
+        .pages{
+            @include comPad;
+            position: absolute;
+            right:0;
+            bottom:0;
+            height:40px;
+            line-height: 40px;
+            text-align: right;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            font-size: 14px;
+            &>div{
+                width:60px;
+                text-align: center;
+            }
+        }
+    }
+
+}

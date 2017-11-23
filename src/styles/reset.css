@@ -1,0 +1,167 @@
+/*--------reset--------*/
+html body {
+    font-family: PingFang SC,Helvetica Neue, Helvetica, Hiragino Sans GB, Microsoft YaHei, \\5FAE\8F6F\96C5\9ED1, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #666;
+    background-color:rgb(255,255,255)!important;
+}
+
+body, dd, details, dl, dt, form, h1, h2, h3, h4, hr, input, li, ol, p, section, textarea, ul {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+input,textarea,select {
+    border:none;
+    outline: none !important;
+    background:none;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+    font-weight: normal;
+}
+
+a:link {
+    text-decoration: none;
+    color:rgba(153,153,153,0.7)
+}
+
+a:visited {
+    text-decoration: none;
+    color:rgba(153,153,153,0.7)
+}
+
+a:hover {
+    text-decoration: none;
+    color:rgba(153,153,153,0.7)
+}
+
+a:active {
+    text-decoration: none;
+    color:rgba(153,153,153,0.7)
+}
+
+a {
+    margin: 0;
+    color:rgba(153,153,153,0.7)
+}
+
+img {
+    border: none;
+}
+img{
+    width:100%;
+    height: 100%;
+}
+
+/*--------全局样式--------*/
+a {
+    text-decoration: none;
+    color: #2db7f5;
+}
+
+
+/*--------自定义class--------*/
+.text-align-center{
+    text-align:center
+}
+.text-align-right{
+    text-align:right
+}
+
+.dp-inline-b{
+    display: inline-block;
+}
+
+.circle{
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.fll {
+    float: left;
+}
+
+.flr {
+    float: right;
+}
+
+.clearfix:after, .clearfix:before {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+.cursor-p {
+    cursor: pointer;
+}
+.cursor-no{
+    cursor:not-allowed;
+}
+
+.ell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*-------字体颜色---------*/
+.txtClo{
+    color: #fff!important;
+}
+.txtClo1{
+    color:#333!important;
+}
+.txtClo2{
+    color:#2A3F54!important;
+}
+.txtClo3{
+    color: #3D83B8!important;
+}
+.txtClo4{
+    color: #666666!important;
+}
+.txtClo5{
+    color: #F68B23!important;
+}
+
+.comPad{
+    padding: .18rem .5rem;
+}
+
+/*----------性能处理----------*/
+.udf_scroller {
+    /*display:none;*/
+    -webkit-overflow-scrolling: touch;
+    -webkit-transform: translateZ(0);
+}
+textarea{
+    -webkit-appearance: none;
+}
+input {
+    outline: none;
+    -webkit-appearance: none; /*去除系统默认的样式*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /* 点击高亮的颜色*/
+}

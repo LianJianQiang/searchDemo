@@ -1,0 +1,1 @@
+{"version":3,"sources":["test.js"],"names":[],"mappings":";;;;;;;;;;IAAqB,I;AACjB,oBAAa;AAAA;AAEZ;;;;iCACO;AACL,mBAAQ,QAAQ,GAAR,CAAY,MAAZ,CAAR;AACF;;;;;;kBANgB,I","file":"test-compiled.js","sourcesContent":["export default class Test {\n    constructor(){\n\n    }\n    render(){\n       return  console.log(111111);\n    }\n}"]}

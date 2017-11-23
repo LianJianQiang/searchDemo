@@ -1,0 +1,15 @@
+session:
+  prefix: x-token-ai-doctor-internal-
+web:
+  routes:
+  - path: /
+    protected: true
+    routeMode: local
+    pathRewrite:
+      mapping:
+        index: /index.html
+    localRoute:
+      path: /
+      index: index.html
+      cache:
+        option: no-cache
