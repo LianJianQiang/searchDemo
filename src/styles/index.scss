@@ -14,23 +14,39 @@ $txtC: #666;
     width: 100%;
     min-width: 1000px;
     height: 55px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    box-shadow: 0 0 5px #888;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-shadow: 0 0 5px #888;
+            box-shadow: 0 0 5px #888;
     .logo{
         width:121px;
         padding:0 10px;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         img{
             width:100%;
         }
     }
     .searchWrap{
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        align-items: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         .inpWrap{
             width:539px;
             border:1px solid #f2f2f2;
@@ -64,6 +80,8 @@ $txtC: #666;
     width: 540px;
     height: 366px;
     padding-left: 121px;
+    position: relative;
+
     .title {
         height: 22px;
         margin: 10px;
@@ -94,10 +112,19 @@ $txtC: #666;
         height: 22px;
         line-height: 22px;
         margin-bottom: 10px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+                flex-direction: row;
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
         .tag {
             display: inline-block;
             margin-right: 8px;
@@ -141,7 +168,8 @@ $txtC: #666;
         height: 100%;
         border: 1px solid #F2F2F2;
         border-top: none;
-        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
         overflow: hidden;
         .contTitle {
             height: 40px;
@@ -166,15 +194,25 @@ $txtC: #666;
             color: #fff;
             text-align: center;
             background: $color;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             border-radius: 0 4px 4px 0;
         }
         .detail {
             max-width: 90%;
-            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
             padding: 4px 10px;
             line-height: 17px;
             em {
@@ -201,7 +239,8 @@ $txtC: #666;
             li {
                 @include borderB;
                 padding-top:10px;
-                box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                        box-sizing: border-box;
                 height: 40px;
                 overflow: hidden;
 
@@ -228,9 +267,18 @@ $txtC: #666;
                     border:none;
                 }
 
+                display: -webkit-box;
+
+                display: -ms-flexbox;
+
                 display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: row;
+                        flex-direction: row;
+                -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                        justify-content: space-between;
 
                 @mixin leftH {
                     height: 20px;
@@ -239,8 +287,12 @@ $txtC: #666;
                 .left {
                     @include leftH;
                     .disease {
+                        display: -webkit-box;
+                        display: -ms-flexbox;
                         display: flex;
-                        justify-content: flex-start;
+                        -webkit-box-pack: start;
+                            -ms-flex-pack: start;
+                                justify-content: flex-start;
                         margin-bottom: 8px;
                     }
                     .diseaseName {
@@ -314,7 +366,8 @@ $txtC: #666;
                         background: $btnColor1;
                         color: #fff;
                         text-align: center;
-                        box-shadow: rgba(174, 174, 174, .5) 0 2px 4px 0;
+                        -webkit-box-shadow: rgba(174, 174, 174, .5) 0 2px 4px 0;
+                                box-shadow: rgba(174, 174, 174, .5) 0 2px 4px 0;
                     }
                 }
             }
@@ -328,8 +381,12 @@ $txtC: #666;
         background-position: bottom;
 
         .contTitle {
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-between;
+            -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
             .text{
                 font-size: 14px;
                 font-weight: 700;
@@ -340,8 +397,12 @@ $txtC: #666;
                 }
             }
             .btn{
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                justify-content: flex-end;
+                -webkit-box-pack: end;
+                    -ms-flex-pack: end;
+                        justify-content: flex-end;
                 .inuqeryEndBtn{
                     margin-right:15px;
                     color: $tagColor1;
@@ -357,8 +418,13 @@ $txtC: #666;
             padding-top:30px;
             font-size: 16px;
             &>div{
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                flex-direction: row;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: row;
+                        flex-direction: row;
             }
             .tag{
                 width:10%;
@@ -413,15 +479,28 @@ $txtC: #666;
         .contTitle {
             background: url('/images/drugBj.jpg') no-repeat;
             background-size: 100% 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: space-between;
+            -webkit-box-pack: justify;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
             color: #fff;
             .diseaseNameWrap{
                 width:75%;
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                flex-direction: row;
-                justify-content: flex-start;
-                align-items: center;
+                -webkit-box-orient: horizontal;
+                -webkit-box-direction: normal;
+                    -ms-flex-direction: row;
+                        flex-direction: row;
+                -webkit-box-pack: start;
+                    -ms-flex-pack: start;
+                        justify-content: flex-start;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
                 font-size: 14px;
                 .drugsDiseaseName{
                     display: inline-block;
@@ -445,25 +524,24 @@ $txtC: #666;
             @include borderB;
             padding-top:10px;
             padding-bottom:10px;
-            //&:last-child{
-            //    border-bottom:none;
-            //}
             .drugName{
                 height:22px;
                 line-height: 22px;
                 font-size: 14px;
+                display: -webkit-box;
+                display: -ms-flexbox;
                 display: flex;
-                justify-content: flex-start;
-                align-items: center;
+                -webkit-box-pack: start;
+                    -ms-flex-pack: start;
+                        justify-content: flex-start;
+                -webkit-box-align: center;
+                    -ms-flex-align: center;
+                        align-items: center;
             }
             .drugInfo{
                 @include infoBg;
                 max-width:100%;
-                //height: 0;
                 -webkit-transition:  .3s;
-                -moz-transition:  .3s;
-                -ms-transition:  .3s;
-                -o-transition:  .3s;
                 transition:  .3s;
                 display: none;
                 .hint{
@@ -497,14 +575,49 @@ $txtC: #666;
             height:40px;
             line-height: 40px;
             text-align: right;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            -webkit-box-pack: end;
+                -ms-flex-pack: end;
+                    justify-content: flex-end;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             font-size: 14px;
             &>div{
                 width:60px;
                 text-align: center;
             }
+        }
+    }
+
+    .globalLoading{
+        width:540px;
+        height: 250px;
+        background: rgba(255,255,255,.8);
+        position: absolute;
+        top:106px;
+        left:121px;
+        font-size: 16px;
+        color: #41B8B0;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
+        img{
+            width:40px;
+            height:40px;
+
         }
     }
 

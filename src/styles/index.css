@@ -2,20 +2,36 @@
   width: 100%;
   min-width: 1000px;
   height: 55px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
   justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-shadow: 0 0 5px #888;
   box-shadow: 0 0 5px #888; }
   #header .logo {
     width: 121px;
     padding: 0 10px;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center; }
     #header .logo img {
       width: 100%; }
   #header .searchWrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center; }
     #header .searchWrap .inpWrap {
       width: 539px;
@@ -38,7 +54,8 @@
 #RxThinkingCard {
   width: 540px;
   height: 366px;
-  padding-left: 121px; }
+  padding-left: 121px;
+  position: relative; }
   #RxThinkingCard .title {
     height: 22px;
     margin: 10px;
@@ -63,9 +80,18 @@
     height: 22px;
     line-height: 22px;
     margin-bottom: 10px;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
     justify-content: flex-start;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center; }
     #RxThinkingCard .tagWrap .tag {
       display: inline-block;
@@ -95,6 +121,7 @@
     height: 100%;
     border: 1px solid #F2F2F2;
     border-top: none;
+    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     overflow: hidden; }
     #RxThinkingCard .diagnoses .contTitle, #RxThinkingCard .inquiry .contTitle, #RxThinkingCard .drugs .contTitle {
@@ -116,13 +143,23 @@
       color: #fff;
       text-align: center;
       background: #F67823;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       border-radius: 0 4px 4px 0; }
     #RxThinkingCard .drugInfo .detail {
       max-width: 90%;
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       padding: 4px 10px;
       line-height: 17px; }
@@ -140,11 +177,19 @@
     #RxThinkingCard .diagnoses .diseaseListWrap li {
       border-bottom: 1px solid #f2f2f2;
       padding-top: 10px;
+      -webkit-box-sizing: border-box;
       box-sizing: border-box;
       height: 40px;
       overflow: hidden;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: row;
       flex-direction: row;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
       justify-content: space-between; }
       #RxThinkingCard .diagnoses .diseaseListWrap li.hover {
         height: 88px; }
@@ -163,7 +208,11 @@
         height: 20px;
         line-height: 20px; }
         #RxThinkingCard .diagnoses .diseaseListWrap li .left .disease {
+          display: -webkit-box;
+          display: -ms-flexbox;
           display: flex;
+          -webkit-box-pack: start;
+          -ms-flex-pack: start;
           justify-content: flex-start;
           margin-bottom: 8px; }
         #RxThinkingCard .diagnoses .diseaseListWrap li .left .diseaseName {
@@ -222,12 +271,17 @@
           background: #41B8B0;
           color: #fff;
           text-align: center;
+          -webkit-box-shadow: rgba(174, 174, 174, 0.5) 0 2px 4px 0;
           box-shadow: rgba(174, 174, 174, 0.5) 0 2px 4px 0; }
   #RxThinkingCard .inquiry {
     background: url("/images/bj.png") no-repeat;
     background-position: bottom; }
     #RxThinkingCard .inquiry .contTitle {
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
       justify-content: space-between; }
       #RxThinkingCard .inquiry .contTitle .text {
         font-size: 14px;
@@ -237,7 +291,11 @@
           font-size: 12px;
           color: rgba(52, 73, 94, 0.5); }
       #RxThinkingCard .inquiry .contTitle .btn {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
         justify-content: flex-end; }
         #RxThinkingCard .inquiry .contTitle .btn .inuqeryEndBtn {
           margin-right: 15px;
@@ -249,7 +307,12 @@
       padding-top: 30px;
       font-size: 16px; }
       #RxThinkingCard .inquiry .inquiryListWrap > div {
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row; }
       #RxThinkingCard .inquiry .inquiryListWrap .tag {
         width: 10%;
@@ -287,14 +350,27 @@
     #RxThinkingCard .drugs .contTitle {
       background: url("/images/drugBj.jpg") no-repeat;
       background-size: 100% 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
       justify-content: space-between;
       color: #fff; }
       #RxThinkingCard .drugs .contTitle .diseaseNameWrap {
         width: 75%;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
         justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center;
         font-size: 14px; }
         #RxThinkingCard .drugs .contTitle .diseaseNameWrap .drugsDiseaseName {
@@ -316,16 +392,19 @@
         height: 22px;
         line-height: 22px;
         font-size: 14px;
+        display: -webkit-box;
+        display: -ms-flexbox;
         display: flex;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
         justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
         align-items: center; }
       #RxThinkingCard .drugs .drugList .drugInfo {
         background: rgba(245, 166, 35, 0.14);
         max-width: 100%;
         -webkit-transition: .3s;
-        -moz-transition: .3s;
-        -ms-transition: .3s;
-        -o-transition: .3s;
         transition: .3s;
         display: none; }
         #RxThinkingCard .drugs .drugList .drugInfo .hint {
@@ -349,12 +428,43 @@
       height: 40px;
       line-height: 40px;
       text-align: right;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: end;
+      -ms-flex-pack: end;
       justify-content: flex-end;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       font-size: 14px; }
       #RxThinkingCard .drugs .pages > div {
         width: 60px;
         text-align: center; }
+  #RxThinkingCard .globalLoading {
+    width: 540px;
+    height: 250px;
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    top: 106px;
+    left: 121px;
+    font-size: 16px;
+    color: #41B8B0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center; }
+    #RxThinkingCard .globalLoading img {
+      width: 40px;
+      height: 40px; }
 
 /*# sourceMappingURL=index.css.map */

@@ -151,7 +151,7 @@ $(function () {
             answer = $(this).attr('data-answer');
 
         nextFetch({
-            value: [key],
+            values: [key],
             cb(){
                 answer && fetch.addCurInputSymptoms(answer);
             }
@@ -238,17 +238,17 @@ $(function () {
     }
 
     function nextFetch(params) {
-        let {value, options}=params,
+        let {values, options}=params,
             {sid, state, id}=fetch.getLastQInfo();
 
         let data = {
                 sid, state
             };
 
-        if (value) {
+        if (values) {
             data.selections = [
                 {
-                    id, value
+                    id, values
                 }
             ];
         }
@@ -263,9 +263,16 @@ $(function () {
             data: JSON.stringify(data),
             success: function (data) {
                 if (data.diagnosis) {
-                    fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
-                    endInquiry();
-                    $('.diseaseListWrap li').addClass('fromInquiry');
+                    $('.globalLoading').css("display","flex");
+                    setTimeout(()=>{
+                        $('.globalLoading').css("display","none");
+                        setTimeout(()=>{
+                            fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
+                            endInquiry();
+                            $('.diseaseListWrap li').addClass('fromInquiry');
+                        },100);
+                    },2000)
+
                 } else if (data.questions) {
                     fetch.handleInquiryStartFetch(data);
                 }
