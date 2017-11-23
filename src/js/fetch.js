@@ -176,7 +176,7 @@ export default class Fetch {
             str += '<li class=' + _cls + '>' +
                 '<div class="left" style="width: 370px;">' +
                 '<div class="disease clearfix">' +
-                '<div class="diseaseName fll ell">' +
+                '<div class="diseaseName fll ell" title="'+list[i].name+'">' +
                 list[i].name +
                 '</div>' +
                 '<div class="weight">' +
@@ -309,3 +309,5 @@ export default class Fetch {
     }
 
 }
+
+

@@ -597,7 +597,7 @@ var Fetch = function () {
 
             for (var i = 0; i < size; i++) {
                 var _cls = i == 0 ? 'hover' : '';
-                str += '<li class=' + _cls + '>' + '<div class="left" style="width: 370px;">' + '<div class="disease clearfix">' + '<div class="diseaseName fll ell">' + list[i].name + '</div>' + '<div class="weight">' + '<div class="weightBj"></div>' + '<div class="weightVal" style="width:' + list[i].weight + '"></div>' + '</div>';
+                str += '<li class=' + _cls + '>' + '<div class="left" style="width: 370px;">' + '<div class="disease clearfix">' + '<div class="diseaseName fll ell" title="' + list[i].name + '">' + list[i].name + '</div>' + '<div class="weight">' + '<div class="weightBj"></div>' + '<div class="weightVal" style="width:' + list[i].weight + '"></div>' + '</div>';
 
                 if (list[i].department && list[i].department != '') {
                     str += '<div class="department ell" title="' + list[i].department + '">' + list[i].department + '</div>';
