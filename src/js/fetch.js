@@ -135,7 +135,6 @@ export default class Fetch {
 
         this._drugs = arr;
         this.renderDrugsList();
-
     }
 
     handleInquiryStartFetch(data) {
