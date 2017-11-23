@@ -58,7 +58,7 @@ export default class Fetch {
             let json = {
                     id: val.disease ? val.disease.id ? val.disease.id : '' : '',
                     name: val.disease ? val.disease.name ? val.disease.name : '' : '',
-                    department: val.department ? val.department.name ? val.department.name : '测试科' : '测试科',
+                    department: val.department ? val.department.name ? val.department.name : '' : '',
                     weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
                     describe: ''
                 },
