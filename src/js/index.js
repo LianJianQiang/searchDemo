@@ -29,14 +29,26 @@ $(function () {
         previewFetch({
             text: val,
             cb(){
-                $('#RxThinkingCard').show();
+                cardInit();
             }
         })
     });
 
+    function cardInit() {
+        $('#RxThinkingCard').show();
+        $('.topTitle').show();
+
+        $('.diagnoses').show();
+        $('.inquiry').hide();
+        $('.drugs').hide();
+
+        $('.header .tag').removeClass('cursor-no');
+
+    }
+
     // 点击 性别
     $('#RxThinkingCard .genderTag').click(function () {
-        if($(this).hasClass('cursor-no'))return;
+        if ($(this).hasClass('cursor-no'))return;
         common.toggleCls($(this), '.genderTag', 'lightH');
         fetch.setAttr('_gender', $(this).attr('data-value'));
         $('.searchBtn').click();
@@ -44,7 +56,7 @@ $(function () {
 
     // 点击 年龄
     $('#RxThinkingCard .ageTag').click(function () {
-        if($(this).hasClass('cursor-no'))return;
+        if ($(this).hasClass('cursor-no'))return;
         common.toggleCls($(this), '.ageTag', 'lightH');
         fetch.setAttr('_age', $(this).attr('data-value'));
         $('.searchBtn').click();
@@ -60,9 +72,9 @@ $(function () {
             return;
         }
 
-        if($('.header .tag').hasClass('cursor-no')){
+        if ($('.header .tag').hasClass('cursor-no')) {
             $('.drugsCloseBtn').addClass('noCur');
-        }else{
+        } else {
             $('.drugsCloseBtn').removeClass('noCur');
         }
         getDrugFetch({
@@ -98,7 +110,7 @@ $(function () {
     //用药方案 --> 点击 关闭
     $('#RxThinkingCard .drugsCloseBtn').click(function () {
 
-        if(!$(this).hasClass('noCur')){
+        if (!$(this).hasClass('noCur')) {
             $('.header .tag').removeClass('cursor-no');
         }
 
@@ -125,7 +137,7 @@ $(function () {
 
     });
 
-    function endInquiry(){
+    function endInquiry() {
 
         $('#RxThinkingCard .diagnoses').show();
         $('#RxThinkingCard .inquiry').hide();
@@ -175,6 +187,8 @@ $(function () {
                 diagnosisSize: 4
             }
         };
+
+        showLoading();
         fetch.ajax({
             type: 'POST',
             url: '/_/ai/v1/doctor/inquiry/preview',
@@ -183,7 +197,7 @@ $(function () {
                 //注意两个handle的顺序
                 fetch.handlePreviewFetchSymptoms(data.symptoms || []);
                 fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
-
+                hideLoading();
                 typeof params.cb == 'function' && params.cb()
             }
         })
@@ -242,8 +256,8 @@ $(function () {
             {sid, state, id}=fetch.getLastQInfo();
 
         let data = {
-                sid, state
-            };
+            sid, state
+        };
 
         if (values) {
             data.selections = [
@@ -254,24 +268,24 @@ $(function () {
         }
 
         if (options) {
-            data.options=options;
+            data.options = options;
         }
-
         fetch.ajax({
             type: 'POST',
             url: '/_/ai/v1/doctor/inquiry/next',
             data: JSON.stringify(data),
             success: function (data) {
                 if (data.diagnosis) {
-                    $('.globalLoading').css("display","flex");
-                    setTimeout(()=>{
-                        $('.globalLoading').css("display","none");
-                        setTimeout(()=>{
-                            fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
-                            endInquiry();
-                            $('.diseaseListWrap li').addClass('fromInquiry');
-                        },100);
-                    },2000)
+                    showLoading();
+                    setTimeout(()=> {
+                        hideLoading(function () {
+                            setTimeout(()=> {
+                                fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
+                                endInquiry();
+                                $('.diseaseListWrap li').addClass('fromInquiry');
+                            }, 100);
+                        })
+                    }, 2000)
 
                 } else if (data.questions) {
                     fetch.handleInquiryStartFetch(data);
@@ -280,6 +294,15 @@ $(function () {
                 typeof params.cb == 'function' && params.cb()
             }
         })
+    }
+
+    function showLoading(cb) {
+        $('.globalLoading').css("display", "flex");
+        typeof cb=="function" && cb()
+    }
+    function hideLoading(cb) {
+        $('.globalLoading').css("display", "none");
+        typeof cb=="function" && cb()
     }
 
 });

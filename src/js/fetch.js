@@ -54,40 +54,45 @@ export default class Fetch {
         let {_symptoms}=this,
             _diseases = [];
 
-        diagnosis && diagnosis.items && diagnosis.items.length > 0 && diagnosis.items.map((val, idx)=> {
-            let json = {
-                    id: val.disease ? val.disease.id ? val.disease.id : '' : '',
-                    name: val.disease ? val.disease.name ? val.disease.name : '' : '',
-                    department: val.department ? val.department.name ? val.department.name : '' : '',
-                    weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
-                    describe: ''
-                },
-                em = '', str = '', emArr = [], strArr = [];
+        if(diagnosis && diagnosis.items) {
+            diagnosis.items.length > 0 && diagnosis.items.map((val, idx)=> {
+                let json = {
+                        id: val.disease ? val.disease.id ? val.disease.id : '' : '',
+                        name: val.disease ? val.disease.name ? val.disease.name : '' : '',
+                        department: val.department ? val.department.name ? val.department.name : '' : '',
+                        weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
+                        describe: ''
+                    },
+                    em = '', str = '', emArr = [], strArr = [];
 
-            if (val.referral) {
-                let referral = val.referral;
-                referral.typicalSymptoms && referral.typicalSymptoms.map(item=> {
-                    if (_symptoms.indexOf(item.name) >= 0) {
-                        emArr.push(item.name)
-                    } else {
-                        strArr.push(item.name)
-                    }
-                });
-                em = emArr.join("、");
-                str = strArr.join('、');
+                if (val.referral) {
+                    let referral = val.referral;
+                    referral.typicalSymptoms && referral.typicalSymptoms.map(item=> {
+                        if (_symptoms.indexOf(item.name) >= 0) {
+                            emArr.push(item.name)
+                        } else {
+                            strArr.push(item.name)
+                        }
+                    });
+                    em = emArr.join("、");
+                    str = strArr.join('、');
 
-                json.describe = `<em>${em}、</em>${str}、`;
+                    json.describe = `<em>${em}、</em>${str}、`;
 
-            }
+                }
 
-            json.describe += val.wikiAbstract ? val.wikiAbstract : '';
-            _diseases.push(json);
+                json.describe += val.wikiAbstract ? val.wikiAbstract : '';
+                _diseases.push(json);
 
-        })
+            })
 
-        this._diseases = _diseases;
+            this._diseases = _diseases;
 
-        this.renderDiseaseList();
+            this.renderDiseaseList();
+        }else if(diagnosis.suggestion && diagnosis.suggestion.text){
+            $('.diseaseListWrap').html(`<div style="margin-top: 20px;">${diagnosis.suggestion.text}</div>`)
+        }
+
         this.renderTitleLightHeight();
     }
 
@@ -96,10 +101,9 @@ export default class Fetch {
 
         symptoms && symptoms.length > 0 && symptoms.map(val=> {
             val.name ? _symptoms.push(val.name) : ''
-        })
+        });
 
         this._symptoms = _symptoms;
-
         this.initCurInputSymptoms();
     }
 

@@ -106,10 +106,21 @@ $(function () {
         previewFetch({
             text: val,
             cb: function cb() {
-                $('#RxThinkingCard').show();
+                cardInit();
             }
         });
     });
+
+    function cardInit() {
+        $('#RxThinkingCard').show();
+        $('.topTitle').show();
+
+        $('.diagnoses').show();
+        $('.inquiry').hide();
+        $('.drugs').hide();
+
+        $('.header .tag').removeClass('cursor-no');
+    }
 
     // 点击 性别
     $('#RxThinkingCard .genderTag').click(function () {
@@ -249,6 +260,8 @@ $(function () {
                 diagnosisSize: 4
             }
         };
+
+        showLoading();
         fetch.ajax({
             type: 'POST',
             url: '/_/ai/v1/doctor/inquiry/preview',
@@ -257,7 +270,7 @@ $(function () {
                 //注意两个handle的顺序
                 fetch.handlePreviewFetchSymptoms(data.symptoms || []);
                 fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
-
+                hideLoading();
                 typeof params.cb == 'function' && params.cb();
             }
         });
@@ -330,21 +343,21 @@ $(function () {
         if (options) {
             data.options = options;
         }
-
         fetch.ajax({
             type: 'POST',
             url: '/_/ai/v1/doctor/inquiry/next',
             data: JSON.stringify(data),
             success: function success(data) {
                 if (data.diagnosis) {
-                    $('.globalLoading').css("display", "flex");
+                    showLoading();
                     setTimeout(function () {
-                        $('.globalLoading').css("display", "none");
-                        setTimeout(function () {
-                            fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
-                            endInquiry();
-                            $('.diseaseListWrap li').addClass('fromInquiry');
-                        }, 100);
+                        hideLoading(function () {
+                            setTimeout(function () {
+                                fetch.handlePreviewFetchDiagnosis(data.diagnosis || {});
+                                endInquiry();
+                                $('.diseaseListWrap li').addClass('fromInquiry');
+                            }, 100);
+                        });
                     }, 2000);
                 } else if (data.questions) {
                     fetch.handleInquiryStartFetch(data);
@@ -353,6 +366,15 @@ $(function () {
                 typeof params.cb == 'function' && params.cb();
             }
         });
+    }
+
+    function showLoading(cb) {
+        $('.globalLoading').css("display", "flex");
+        typeof cb == "function" && cb();
+    }
+    function hideLoading(cb) {
+        $('.globalLoading').css("display", "none");
+        typeof cb == "function" && cb();
     }
 });
 
@@ -463,41 +485,46 @@ var Fetch = function () {
                 _diseases = [];
 
 
-            diagnosis && diagnosis.items && diagnosis.items.length > 0 && diagnosis.items.map(function (val, idx) {
-                var json = {
-                    id: val.disease ? val.disease.id ? val.disease.id : '' : '',
-                    name: val.disease ? val.disease.name ? val.disease.name : '' : '',
-                    department: val.department ? val.department.name ? val.department.name : '' : '',
-                    weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
-                    describe: ''
-                },
-                    em = '',
-                    str = '',
-                    emArr = [],
-                    strArr = [];
+            if (diagnosis && diagnosis.items) {
+                diagnosis.items.length > 0 && diagnosis.items.map(function (val, idx) {
+                    var json = {
+                        id: val.disease ? val.disease.id ? val.disease.id : '' : '',
+                        name: val.disease ? val.disease.name ? val.disease.name : '' : '',
+                        department: val.department ? val.department.name ? val.department.name : '' : '',
+                        weight: val.weight ? parseInt(val.weight * 100) + '%' : '5%',
+                        describe: ''
+                    },
+                        em = '',
+                        str = '',
+                        emArr = [],
+                        strArr = [];
 
-                if (val.referral) {
-                    var referral = val.referral;
-                    referral.typicalSymptoms && referral.typicalSymptoms.map(function (item) {
-                        if (_symptoms.indexOf(item.name) >= 0) {
-                            emArr.push(item.name);
-                        } else {
-                            strArr.push(item.name);
-                        }
-                    });
-                    em = emArr.join("、");
-                    str = strArr.join('、');
+                    if (val.referral) {
+                        var referral = val.referral;
+                        referral.typicalSymptoms && referral.typicalSymptoms.map(function (item) {
+                            if (_symptoms.indexOf(item.name) >= 0) {
+                                emArr.push(item.name);
+                            } else {
+                                strArr.push(item.name);
+                            }
+                        });
+                        em = emArr.join("、");
+                        str = strArr.join('、');
 
-                    json.describe = '<em>' + em + '\u3001</em>' + str + '\u3001';
-                }
+                        json.describe = '<em>' + em + '\u3001</em>' + str + '\u3001';
+                    }
 
-                json.describe += val.wikiAbstract ? val.wikiAbstract : '';
-                _diseases.push(json);
-            });
+                    json.describe += val.wikiAbstract ? val.wikiAbstract : '';
+                    _diseases.push(json);
+                });
 
-            this._diseases = _diseases;
+                this._diseases = _diseases;
 
-            this.renderDiseaseList();
+                this.renderDiseaseList();
+            } else if (diagnosis.suggestion && diagnosis.suggestion.text) {
+                $('.diseaseListWrap').html('<div style="margin-top: 20px;">' + diagnosis.suggestion.text + '</div>');
+            }
+
             this.renderTitleLightHeight();
         }
     }, {
@@ -510,7 +537,6 @@ var Fetch = function () {
             });
 
             this._symptoms = _symptoms;
-
             this.initCurInputSymptoms();
         }
     }, {

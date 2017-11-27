@@ -71,6 +71,21 @@ $txtC: #666;
     }
 }
 
+.topTitle {
+    width: 660px;
+    margin: 10px;
+    font-size: 16px;
+    color: #333333;
+    padding-left: 121px;
+    box-sizing: border-box;
+    margin-left: 0;
+    .lightH {
+        color: #D0011B;
+        margin: 0 5px;
+    }
+}
+
+
 #RxThinkingCard {
 
     @mixin comPad {
@@ -82,16 +97,6 @@ $txtC: #666;
     padding-left: 121px;
     position: relative;
 
-    .title {
-        height: 22px;
-        margin: 10px;
-        font-size: 16px;
-        color: #333333;
-        .lightH {
-            color: #D0011B;
-            margin: 0 5px;
-        }
-    }
 
     //header
     .header {
@@ -591,12 +596,18 @@ $txtC: #666;
             }
         }
     }
+
+
+}
+
+.cardWrap{
+    position: relative;
     .globalLoading{
         width:540px;
         height: 250px;
         background: rgba(255,255,255,.8);
         position: absolute;
-        top:106px;
+        top:74px;
         left:121px;
         font-size: 16px;
         color: #41B8B0;
@@ -605,19 +616,18 @@ $txtC: #666;
         display: flex;
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
         -webkit-box-pack: center;
-            -ms-flex-pack: center;
-                justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
         -webkit-box-align: center;
-            -ms-flex-align: center;
-                align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
         img{
             width:40px;
             height:40px;
 
         }
     }
-
 }
